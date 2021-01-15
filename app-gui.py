@@ -4,7 +4,7 @@ from create_dataset import start_capture
 import tkinter as tk
 from tkinter import font as tkfont
 from tkinter import messagebox,PhotoImage
-from PIL import ImageTk, Image
+from emotion_prediction import emotion
 
 names = set()
 
@@ -169,6 +169,8 @@ class PageThree(tk.Frame):
         self.controller.show_frame("PageFour")
 
 
+
+
 class PageFour(tk.Frame):
 
     def __init__(self, parent, controller):
@@ -179,12 +181,15 @@ class PageFour(tk.Frame):
         label.grid(row=0,column=0, sticky="ew")
         button1 = tk.Button(self, text="Face Recognition", command=self.openwebcam, fg="#ffffff", bg="#263942")
         button2 = tk.Button(self, text="Go to Home Page", command=lambda: self.controller.show_frame("StartPage"), bg="#ffffff", fg="#263942")
+        button3 = tk.Button(self, text="Emotion Recognition", command=self.spritual, fg="#ffffff", bg="#263942")
         button1.grid(row=1,column=0, sticky="ew", ipadx=5, ipady=4, padx=10, pady=10)
         button2.grid(row=1,column=1, sticky="ew", ipadx=5, ipady=4, padx=10, pady=10)
+        button3.grid(row=2, column=0, sticky="ew", ipadx=5, ipady=4, padx=10, pady=10)
 
     def openwebcam(self):
         main_app(self.controller.active_name)
-
+    def spritual(self):
+        emotion()
 
 
 app = MainUI()
