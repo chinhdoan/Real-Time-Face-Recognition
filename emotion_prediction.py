@@ -7,12 +7,15 @@ import numpy as np
 
 frame = cv2.VideoCapture(0)
 
+#sử dụng MTCNN thư viện để nhận điện gương mặt
 detector= MTCNN()
 
+#load model cảm xúc đã được train
 emotion_model = "./data/_mini_XCEPTION.106-0.65.hdf5"
 
 
 MODEL_MEAN_VALUES=(78.4263377603, 87.7689143744, 114.895847746)
+#Cảm xúc
 Emotions = ["angry","disgust","scared","happy","sad","surprised","neutral"]
 
 face_cascade = cv2.CascadeClassifier('./data/haarcascade_frontalface_default.xml')
@@ -40,7 +43,7 @@ def emotion():
             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
             cv2.putText(img, f"{label}", (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0))
 
-        cv2.imshow("Gender and Age Prediction", img)
+        cv2.imshow("Emotion Prediction", img)
         key = cv2.waitKey(1) & 0xFF
         if key == ord("q") or key == 27:
                 break
